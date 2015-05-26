@@ -13,7 +13,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name='trackseeker',
 
-    version='1.0.0',
+    version='1.0.2',
 
     description='A tool that detects long silences in the middle of music files and splits the original track into two with no silence.',
     long_description=long_description,
