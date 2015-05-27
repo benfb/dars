@@ -44,17 +44,8 @@ def splitSong(songToSplit, start1, start2):
 
 def saveFiles(fileName1, fileName2, songs):
     """Save songs to files"""
-    outSongs = [fileName1, fileName2]
-    songs[0].export(fileName1, format=fileName1.split(".")[1], tags={"album": args.album, "artist": args.artist})
-    songs[1].export(fileName2, format=fileName2.split(".")[1], tags={"album": args.album, "artist": args.artist})
-    return outSongs
-
-def addToiTunes(fileName):
-    """Attempts to add fileName to iTunes by moving it into the dfault Automatically Add to iTunes.localized folder"""
-    try:
-        shutil.move(fileName, "/Users/ben/Music/iTunes/iTunes Media/Automatically Add to iTunes.localized")
-    except IOError:
-        print("Failed to add song to iTunes: The file or folder doesn't exist!")
+    songs[0].export(fileName1, format=fileName1.split(".")[1])
+    songs[1].export(fileName2, format=fileName2.split(".")[1])
 
 def parseArgs():
     """Parses arguments passed in via the command line"""
@@ -63,9 +54,6 @@ def parseArgs():
     parser.add_argument("out1", help="the name of the first file you want to output")
     parser.add_argument("out2", help="the name of the second file you want to output")
     parser.add_argument("-v", "--verbose", help="increase output verbosity", action="store_true")
-    parser.add_argument("-i", "--itunes", help="attempt to add the split songs to iTunes", action="store_true")
-    parser.add_argument("--artist", help="specifies artist for tagging of output files")
-    parser.add_argument("--album", help="specifies album for tagging of output files")
     return parser.parse_args()
 
 def main():
@@ -73,13 +61,6 @@ def main():
     songIn = instantiateSong(args.name, detectFormat(args.name))
     times = findGap(songIn)
     saveFiles(args.out1, args.out2, splitSong(songIn, times[0], times[1]))
-    if(args.itunes):
-        if(args.verbose):
-            print("Adding " + args.out1 + " to iTunes...")
-        addToiTunes(args.out1)
-        if(args.verbose):
-            print("Adding " + args.out2 + " to iTunes...")
-        addToiTunes(args.out2)
     if(args.verbose):
         print "All done!"
 
