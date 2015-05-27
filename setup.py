@@ -11,15 +11,15 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='trackseeker',
+    name='dars',
 
-    version='1.0.4',
+    version='1.0.5',
 
     description='A tool that detects long silences in the middle of music files and splits the original track into two with no silence.',
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com/benfb/trackseeker',
+    url='https://github.com/benfb/dars',
 
     # Author details
     author='Ben Bailey',
@@ -29,7 +29,7 @@ setup(
     license='MIT',
 
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
 
         # Indicate who your project is intended for
         'Intended Audience :: End Users/Desktop',
@@ -66,7 +66,7 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'trackseeker=trackseeker:main',
+            'dars=dars:main',
         ],
     },
 )
